@@ -1,0 +1,30 @@
+<main>
+    <section id="hero">
+            <h1 *ngIf="recentTrips?.length === 0">Welcome to the Gateway of the Stars!</h1>
+            <h2 class="recentAdded" *ngIf="recentTrips.length > 0">Recently Added Trips!</h2>
+
+      
+        <p *ngIf="recentTrips?.length === 0">Our <strong>Space Travel</strong> platform is your first step in a journey that transcends the ordinary.<br />
+            Here, we bridge the gap between science fiction and reality, offering exhilarating space tours<br />
+            that defy gravity and expand horizons. Whether you're a seasoned astronaut or a starry-eyed dreamer,<br />
+            our expeditions cater to every level of cosmic curiosity.</p>
+
+        <p *ngIf="recentTrips?.length === 0">Discover the wonders of our universe, from the moon's mysterious craters to the swirling, distant galaxies.<br />
+            With cutting-edge technology, expert crews, and unparalleled safety measures, we promise an adventure<br />
+            that's not just out of this world—it's beyond imagination. Get ready to embark on an unforgettable odyssey among the stars!</p>
+
+        <app-loader class="loader" *ngIf="!recentTrips" />
+        
+        <ul class="recent" *ngIf="recentTrips">
+            <li *ngFor="let trip of recentTrips">
+                <a routerLink="/trips/{{trip._id}}">
+                    <app-card [trip]="trip" />
+                </a>
+            </li>
+        </ul>
+
+    </section>
+
+
+</main>
+
