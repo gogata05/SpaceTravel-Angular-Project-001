@@ -25,7 +25,7 @@
     "rxjs": "~7.8.1",
     "ts-evaluator": "^1.2.0",
     "tslib": "^2.6.2",
-    "zone.js": "~0.14.3"
+    "zone.js": "~0.14.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.2.0",
@@ -33,14 +33,14 @@
     "@angular/compiler-cli": "^17.2.1",
     "@types/body-parser": "^1.19.5",
     "@types/jasmine": "~5.1.4",
-    "@types/jest": "^29.5.11",
-    "@types/node": "^20.11.5",
-    "jasmine-core": "~5.1.1",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.19",
+    "jasmine-core": "~5.1.2",
     "karma": "~6.4.2",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.2.0"
+    "typescript": "~5.3.3"
   }
 }
