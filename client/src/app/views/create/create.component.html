@@ -1,0 +1,150 @@
+<div class="container">
+	<div class="screen">
+		<div class="screen__content">
+			<form class="login" #form="ngForm" (ngSubmit)="create(form)" enctype="multipart/form-data" method="post">
+
+				<!-- <h2 [ngClass]="form.touched && (inputDescription.errors || inputImage.errors || errorMessageFromServer) ?  'button__text error-icon' : 'button__text'"
+					class="button__text">Add Trip...</h2> -->
+
+
+					<h2 [ngClass]="form.touched && (form.controls['startDate'].errors || form.controls['description'].errors || !selectedFile || errorMessageFromServer) ?  'button__text error-icon' : 'button__text'"
+					class="button__text">Add Trip...</h2>
+				
+
+
+					<!-- START LOCATION -->
+                <div class="login__field">
+					<strong>Start Location</strong>
+                	<select class="login__input" name="startLocation" ngModel required>
+						<option *ngFor="let startLocation of startLocations" [value]="startLocation">{{ startLocation }}</option>
+                	</select>
+					<!-- <i class="fa-solid fa-location-crosshairs"></i> -->
+                </div>
+				<ng-container *ngIf="form.controls['startLocation'].touched">
+					<p class="error" *ngIf="form.controls['startLocation'].errors?.['required']">
+						Start Location is required!
+					</p>
+				</ng-container>
+				
+                
+                <!-- END LOCATION -->
+                <div class="login__field">
+					<strong>End Location</strong>
+                	<select class="login__input" name="endLocation" ngModel required>
+                	  <option *ngFor="let endLocation of endLocations" [value]="endLocation">{{ endLocation }}</option>
+                	</select>
+					<!-- <i class="fa-solid fa-location-crosshairs"></i> -->
+                </div>
+				<ng-container *ngIf="form.controls['endLocation'].touched">
+					<p class="error" *ngIf="form.controls['endLocation'].errors?.['required']">
+						End Location is required!
+					</p>
+				</ng-container>
+                
+				<!-- START DATE -->
+				<div><strong>Start Date</strong></div>
+				<div class="login__field">
+					<i
+						[ngClass]="inputStartDate.errors && inputStartDate.touched ?  'login__icon fa-solid fa-calendar error-icon' : 'login__icon fa-solid fa-calendar'"></i>
+					<input [ngClass]="inputStartDate.errors && inputStartDate.touched ?  'input-error' : '' " type="date"
+						class="login__input" name="startDate" placeholder="Date" ngModel #inputStartDate="ngModel" required>
+				</div>
+
+				<ng-container *ngIf="inputStartDate.touched">
+					<p class="error" *ngIf="inputStartDate.errors?.['required']">
+						Start Date is required!
+					</p>
+				</ng-container>
+
+				<!-- END DATE -->
+				<div><strong>End Date</strong></div>
+				<div class="login__field">
+					<i
+						[ngClass]="inputEndDate.errors && inputEndDate.touched ?  'login__icon fa-solid fa-calendar error-icon' : 'login__icon fa-solid fa-calendar'"></i>
+					<input [ngClass]="inputEndDate.errors && inputEndDate.touched ?  'input-error' : '' " type="date"
+						class="login__input" name="endDate" placeholder="Date" ngModel #inputEndDate="ngModel" required>
+				</div>
+			
+				<ng-container *ngIf="inputEndDate.touched">
+					<p class="error" *ngIf="inputEndDate.errors?.['required']">
+						End Date is required!
+					</p>
+				</ng-container>
+
+				<!-- DESCRIPTION -->
+				<div class="login__field">
+					<i
+						[ngClass]="inputDescription.errors && inputDescription.touched ?  'login__icon fas fa-comment error-icon' : 'login__icon fas fa-comment'"></i>
+					<textarea [ngClass]="inputDescription.errors && inputDescription.touched ?  'input-error' : '' "
+						type="text" class="login__input" name="description" placeholder="Description" ngModel
+						#inputDescription="ngModel" required minlength="10" maxlength="50"></textarea>
+				</div>
+
+				<ng-container *ngIf="inputDescription.touched">
+					<p class="error" *ngIf="inputDescription.errors?.['required']">
+						Description is required!
+					</p>
+					<p class="error" *ngIf="inputDescription.errors?.['minlength']">
+						Description must be at least {{inputDescription.errors?.['minlength']['requiredLength']}}
+						characters!
+					</p>
+					<p class="error" *ngIf="inputDescription.errors?.['maxlength']">
+						Description should not be more than {{inputDescription.errors?.['maxlength']['requiredLength']}}
+						characters!
+					</p>
+				</ng-container>
+
+				<!-- IMAGE -->
+				<input
+				[ngClass]="inputImage.errors && inputImage.touched ? 'login__input input-error' : 'login__input'"
+				type="file"
+				id="image"
+				name="img"
+				ngModel
+				#inputImage="ngModel"
+				(change)="loadFile($event)"
+				placeholder="Image"
+				required>
+				<i class="fa-solid fa-image"></i>
+			  
+				<ng-container *ngIf="inputImage.touched">
+					<p class="error" *ngIf="!inputImage.value">
+					  Image is required!
+					</p>
+				  </ng-container>				  
+
+				<ng-container *ngIf="errorMessageFromServer">
+					<p class="error">
+						{{errorMessageFromServer}}
+					</p>
+				</ng-container>
+
+				<button [disabled]="form.invalid" class="button login__submit">
+					<span class="button__text">Create</span>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>
+			</form>
+			<!-- <div class="social-login">
+				<h3>trip in via</h3>
+				<div class="social-icons">
+					<a href="#" class="social-login__icon fab fa-instagram"></a>
+					<a href="#" class="social-login__icon fab fa-facebook"></a>
+					<a href="#" class="social-login__icon fab fa-twitter"></a>
+				</div>
+			</div> -->
+		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>
+	</div>
+	<ng-container *ngIf="selectedFile">
+	<div class="screen">
+		<div class="login">
+			<img style="width: 320px" id="output" [src]="url" alt="Image">
+		</div>
+	</div>
+</ng-container>
+</div>
