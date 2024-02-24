@@ -18,18 +18,20 @@ export class TripsComponent implements OnInit, OnDestroy {
   showPagination: boolean = false;
 
   ngOnInit(): void {
-    const allTrips$ = this.apiService.getCount()(
+    const allTrips$ = this.apiService.getCount().subscribe(
       {
         next: (result) => {
+
           this.pages = result;
+          console.log(result);
         },
         error: (error) => {
+          console.log(error.error.message);
         }
       }
     );
     this.subscriptions.add(allTrips$);
   }
-
 
   currentPage$ = new BehaviorSubject<number>(1);
 
@@ -39,12 +41,13 @@ export class TripsComponent implements OnInit, OnDestroy {
     {
       next: (result) => {
         this.trips = result;
-      
+        console.log(this.trips);
         this.isLoading = false;
         this.showPagination = true;
         this.subscriptions.add(this.currentPageTrips$)
       },
       error: (error) => {
+        console.log(error.error.message);
       }
     }
     )
@@ -61,7 +64,8 @@ export class TripsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.subscriptions) {
-      this.subscriptions.unsubscribe();    
+      this.subscriptions.unsubscribe();
+      console.log('unsubscribed');
     }
   }
   trackByFn(index: number, item: Trip): number {
