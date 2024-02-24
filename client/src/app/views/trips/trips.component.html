@@ -1,0 +1,22 @@
+<main>
+    <section id="hero">
+        <h1>Space <strong>TRIPS</strong> all over the universe...</h1>
+        <h2 *ngIf="!currentPageTrips$">There are no trips!</h2>
+        <div class="pagination" *ngIf="showPagination">
+            <app-pagination *ngIf="trips" [currentPage$]="currentPage$" [pages]="pages" />
+        </div>
+        <app-loader class="loader" *ngIf="isLoading"/>
+        <ul class="recent" *ngIf="!isLoading">
+
+            <!-- <li *ngFor="let trip of trips"> -->
+            <li *ngFor="let trip of trips; trackBy: trackByFn"> <!-- for speed//delete later?-->
+
+                <!-- <a routerLink="/trips/{{trip._id}}" > -->
+                <a [routerLink]="['/trips', trip._id]">
+                    <app-card [trip]="trip" />
+                </a>
+            </li>
+
+        </ul>
+    </section>
+</main>
