@@ -1,0 +1,142 @@
+$bright-color: #fff;
+
+@mixin bottom {
+    position: absolute;
+    right: 0;
+    left: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #80afcd;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    line-height: 1.4;
+}
+.left {
+    background-color: rgba(255, 255, 255, 0.9); /* По-висока прозрачност */
+    backdrop-filter: blur(5px); /* Размазване на фона */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    max-width: 340px; /* Малко по-голяма ширина */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    font-size: 1rem; /* По-голям шрифт */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* По-модерен шрифт */
+    transition: transform 0.3s ease; /* Плавен преход за transform */
+    //move all <p> to the left side:
+    // p {
+    //     text-align: left;
+    // }
+}
+
+.left:hover {
+    transform: translateY(-5px); /* Леко издигане при ховър */
+    background-color: rgba(255, 255, 255, 1); /* По-малка прозрачност при ховър */
+}
+
+/* При добавяне на икони */
+.left i {
+    margin-right: 8px; /* Разстояние от иконата до текста */
+    color: #5D99C6; /* Цвят на иконите, съответстващ на темата */
+}
+
+
+
+.container {
+    //  background: url("https://images.unsplash.com/photo-1574007557239-acf6863bc375?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 350px;
+    height: 500px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.315);
+    margin-right: 2rem;
+
+    .image {
+        background-position: center;
+        object-fit: cover
+    }
+
+    .container__info {
+        background-color: #090909;
+        @include bottom;
+        bottom: 20%;
+        display: flex;
+        align-items: flex-end;
+        padding: 15px 30px;
+        color: $bright-color;
+        opacity: 0.6;
+
+        span {
+            margin-right: 20px;
+        }
+
+        i {
+            margin-right: 10px;
+        }
+    }
+
+    .container__profile {
+        background-color: #e4f2fd;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        @include bottom();
+        bottom: 0;
+
+        img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-position: center;
+            object-fit: cover;
+            margin-right: 10px;
+            background-size:cover;
+        }
+
+        h2 {
+            color: #334454;
+            font-size: 1.2rem;
+        }
+
+        p {
+            color: #a1b2bc;
+            font-size: 0.8rem;
+            text-align: left;
+        }
+
+        p b {
+            font-style: italic;
+        }
+    }
+
+
+
+}
+
+.container:active,
+.container:focus,
+.container:hover {
+    outline: none;
+    border-bottom-color: #809e67;
+}
+
+.container:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 992px) {
+    .container {
+        margin-bottom: 2rem;
+    }
+}

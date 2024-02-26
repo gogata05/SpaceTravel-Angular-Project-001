@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="left">
+       <p>Trip: <b>{{trip.startLocation}} - {{trip.endLocation}}</b></p>
+       <p>Date: <b>{{trip.startDate | date:'mediumDate'}} - {{trip.endDate | date:'mediumDate'}}</b></p>
+          <p>Description: <b>{{ trip.description.length > 10 ? (trip.description | slice:0:10) + '... and more' : trip.description }}</b></p>
+    </div>
+ 
+    <div class="container" [ngStyle]="{ 'background-image': 'url(' + 'data:image/png;base64,' + getImageAsBase64() + ')'}">
+       <div class="container__info">
+          <span><i class="fas fa-heart"></i>{{trip.likes.length}}</span>
+          <span><i class="fas fa-comment-alt"></i>{{trip.commentList.length}}</span>
+          <span><i class="fas fa-download"></i>{{trip.downloads.length}}</span>
+       </div>
+    
+       <div class="container__profile">
+          <img
+          [ngStyle]="{ 'background-image': 'url(' + 'data:image/png;base64,' + getAvatarAsBase64() + ')'}" />
+          <div class="container__profile__text">
+             <p>by <b>{{trip._ownerId.username}}</b></p>
+             <p>Trip: <b>{{trip.startLocation}} - {{trip.endLocation}}</b></p>
+             <p>Start Date: <b>{{trip.startDate | date:'mediumDate'}}</b></p>
+             <p>End Date: <b>{{trip.endDate | date:'mediumDate'}}</b></p>
+          </div>
+       </div>
+    </div>
+ 
+ 
+ </div>
