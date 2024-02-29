@@ -4,14 +4,14 @@ const {parseToken} = require('../managers/userManager');
 
 exports.auth = async (req, res, next) => {
     const token = req.headers['x-authorization'];
-    //console.log(token);
+    console.log(token);
     if (token) {
         try {
             const decodedToken = await parseToken(token);
             //console.table(decodedToken);
             req.user = decodedToken;
             req.token = token;
-            //console.log(req.user);
+            console.log(req.user);
             next();
         } catch (err) {
             console.log(err);

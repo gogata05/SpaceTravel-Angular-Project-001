@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-// import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './shared/shared.module';
 import { ViewsModule } from './views/views.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { DatePipe } from '@angular/common';
@@ -22,7 +22,7 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    // SharedModule,
+    SharedModule,
     ViewsModule,
 
   ],

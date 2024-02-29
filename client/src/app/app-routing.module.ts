@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
-// import { MissingComponent } from './views/missing/missing.component';
+import { MissingComponent } from './views/missing/missing.component';
 // import { SearchComponent } from './views/search/search.component';
 import { AboutComponent } from './views/about/about.component';
 

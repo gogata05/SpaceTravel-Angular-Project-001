@@ -16,7 +16,7 @@ userController.post('/register',
     body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
     async (req, res) => {
 
-        //console.log(req.body);
+        console.log(req.body);
 
         try {
             const { errors } = validationResult(req);
@@ -64,7 +64,7 @@ userController.put('/update', async (req, res, next) => {
         return res.status(403).json({ message: 'Invalid password!' });
     }
 
-    //console.log(user);
+    console.log(user);
     if (!user) {
         return res.status(403).json({ message: 'Unauthorized!' });
     }
@@ -107,11 +107,11 @@ userController.get('/logout', async (req, res) => {
 
 
 userController.get('/profile', async (req, res) => {
-    //console.log(req.user.email);
+    console.log(req.user.email);
     try {
         if (req.user.email) {
             const user = await userManager.getUserInfo(req.user.email);
-            //console.log(user);
+            console.log(user);
             return res.status(200).json(user);
         }
 

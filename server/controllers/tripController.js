@@ -131,8 +131,8 @@ tripController.get('/:id', async (req, res) => {
 
 tripController.put('/:id', isAuth, async (req, res, next) => {
     const item = await tripManager.getById(req.params.id);
-    //console.log('req.user', req.user._id);
-    //console.log('item._ownerId', item._ownerId._id.toString());
+    console.log('req.user', req.user._id);
+    console.log('item._ownerId', item._ownerId._id.toString());
     if (req.user._id != item._ownerId._id.toString()) {
         return res.status(403).json({ message: 'You cannot modify this record' });
     }
