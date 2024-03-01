@@ -23,6 +23,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   trip: any;
+  //trip!: Trip | null;
   subscriptions: Subscription = new Subscription();
   user!: User | null;
   avatar: string | undefined;
@@ -61,11 +62,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
           this.trip.startDate = moment(this.trip.startDate).format('DD/MM/YYYY');
           this.trip.endDate = moment(this.trip.endDate).format('DD/MM/YYYY');
           this.isLoading = !this.isLoading;
-          this.avatar = this.getImageAsBase64(this.trip._ownerId.img.data.data);
-          this.image = this.getImageAsBase64(this.trip.img.data.data);
-          this.isOwner = this.user?._id === this.trip._ownerId._id;
+          this.avatar = this.getImageAsBase64(this.trip?._ownerId.img.data.data);
+          this.image = this.getImageAsBase64(this.trip?.img.data.data);
+          this.isOwner = this.user?._id === this.trip?._ownerId._id;
           this.isLiked = this.trip.likes.map((x: { _id: { toString: () => any; }; }) => x._id.toString()).includes(this.user?._id.toString());
-          console.log('IsLiked ->', this.isLiked);
+          console.log('isLiked ->', this.isLiked);
           console.log(this.isOwner);
           console.log(this.trip);
         },
@@ -96,9 +97,24 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.isShown = !this.isShown;
   }
 
+  onDeleteConfirmed() {
+    console.log('Delete operation confirmed');
+
+    const deleteLog$ = this.apiService.deleteByTripId(this.tripId).subscribe({
+      error: (error) => {
+        console.log(error.error.message);
+      },
+      complete: () => this.router.navigate(['home'])
+    });
+    this.subscriptions.add(deleteLog$);
+  }
+
+  showCommentSection(): void {
+    this.showComments = !this.showComments;
+  }
 
   like(): void {
-    console.log('Like');
+    console.log('like');
     const likeLog$ = this.apiService.addLike(this.tripId).subscribe({
       next: () => {
         this.isLiked = true;
@@ -121,6 +137,37 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(likeLog$);
   }
 
+  addComment(commentForm: NgForm): void {
+    if (commentForm.invalid) {
+      return;
+    }
+
+    console.log(commentForm.value.comment);
+
+    const formData = new FormData();
+    formData.append('comment', commentForm.value.comment);
+
+    const commentLog$ = this.apiService.addComment(this.tripId, formData).subscribe({
+      next: () => {
+        commentForm.resetForm();
+        this.apiService.getDetails(this.tripId).subscribe(
+          {
+            next: (result) => {
+              this.trip.commentList = result.commentList;//!
+            },
+            error: (error) => {
+              console.log(error.error.message);
+            }
+          }
+        );
+      },
+      error: (error) => {
+        console.log(error.error.message);
+        //this.errorMessageFromServer = error.error.message;
+      }
+    });
+    this.subscriptions.add(commentLog$);
+  }
 
   getCreatedAt(id: string): string {
     const timeStamp = id.toString().substring(0, 8);
