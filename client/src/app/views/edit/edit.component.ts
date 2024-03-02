@@ -46,6 +46,51 @@ export class EditComponent implements OnInit, OnDestroy {
     this.subscriptions.add(currentTrip$);
   }
 
+  getImageAsBase64(): string {
+    let binary = '';
+    const bytes = new Uint8Array(this.trip.img.data.data);
+
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
+  }
+
+  loadFile(event: any): void {
+
+    if (event.target.files) {
+      const reader = new FileReader();
+      this.selectedFile = <File>event.target.files[0];
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event: any) => {
+        this.url = event.target?.result;
+      }
+    }
+  }
+
+  convertToImageFile(base64String: string, filename: string): File {
+    const byteCharacters = atob(base64String);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+      const slice = byteCharacters.slice(offset, offset + 512);
+      const byteNumbers = new Array(slice.length);
+
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    const blob = new Blob(byteArrays, { type: 'image/jpeg' });
+
+    const file = new File([blob], filename, { type: 'image/jpeg' });
+    return file;
+  }
+
   editHandler(editForm: NgForm) {
     if (editForm.invalid) {
       return;
