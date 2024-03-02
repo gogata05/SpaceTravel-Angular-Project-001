@@ -5,8 +5,8 @@ import { TripsComponent } from './trips/trips.component';
 import { CreateComponent } from './create/create.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
-// import { DetailsComponent } from './details/details.component';
-// import { EditComponent } from './edit/edit.component';
+import { DetailsComponent } from './details/details.component';
+import { EditComponent } from './edit/edit.component';
 import { TripsRoutingModule } from './trips-routing.module';
 // import { SearchComponent } from './search/search.component';
 import { MissingComponent } from './missing/missing.component';
@@ -19,8 +19,8 @@ import { AboutComponent } from './about/about.component';
     HomeComponent,
     TripsComponent,
     CreateComponent,
-    // DetailsComponent,
-    // EditComponent,
+    DetailsComponent,
+    EditComponent,
     // SearchComponent,
     MissingComponent,
     AboutComponent
