@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="screen">
+        <div class="screen__content">
+            <form class="login">
+                <h1 class="button__text">User Info</h1>
+
+                <img class="login__field" [ngStyle]="{ 'background-image': 'url(' + 'data:image/png;base64,' + profilePic + ')'}"/>
+
+                <div class="login__field">
+                    <i class="login__icon fas fa-user"></i>
+                        <div class="login__input">{{user?.username}}</div>
+                </div>
+
+                <div class="login__field">
+                    <i Class="login__icon fas fa-envelope"></i>
+                        <div class="login__input">{{user?.email}}</div>
+                </div>
+
+                <button routerLink="/user/profile/edit" class="button login__submit">
+                    <span class="button">Edit Profile</span>
+                    <i class="button__icon fas fa-chevron-right"></i>
+                </button>
+            </form>
+
+        </div>
+        <div class="screen__background">
+            <span class="screen__background__shape screen__background__shape4"></span>
+            <span class="screen__background__shape screen__background__shape3"></span>
+            <span class="screen__background__shape screen__background__shape2"></span>
+            <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
+    </div>
+   
+</div>
+
+<section id="hero">
+    <div *ngIf="showPagination" class="pagination">
+        <app-pagination [currentPage$]="currentPage$" [pages]="pages" />
+    </div>
+    <app-loader class="loader" *ngIf="isLoading" />
+    <h2 *ngIf="userTrips$?.length === 0">This user do not have any trips!</h2>
+    <ul *ngIf="userTrips$ as userTrips" class="recent">
+        <li *ngFor="let trip of userTrips">
+            <a routerLink="/trips/{{trip._id}}" >
+                <app-card [trip]="trip" />
+            </a>
+        </li>
+    </ul>
+</section>
