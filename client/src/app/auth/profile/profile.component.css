@@ -23,7 +23,7 @@
 
 	z-index: 1;
 	position: relative;
-	height: 80%;
+	height: 100%;
 }
 
 .screen__background {
@@ -43,8 +43,8 @@
 }
 
 .screen__background__shape1 {
-	height: 620px;
-	width: 620px;
+	height: 520px;
+	width: 520px;
 	background: #FFF;
 	top: -50px;
 	right: 120px;
@@ -146,6 +146,7 @@
 
 .social-login {
 	position: absolute;
+	/* height: 140px; */
 	width: 80px;
 	text-align: center;
 	bottom: 0px;
@@ -243,13 +244,16 @@ section#hero {
 }
 
 .pagination {
+	/* margin-top: 1rem; */
 	position: inherit;
 }
 
 .loader {
+	/* margin-top: 5rem; */
 	min-height: calc(100vh - 60px);
 }
 
+/* RESPONSIVE */
 @media (max-width: 992px) {
 	.recent {
 		flex-direction: column;

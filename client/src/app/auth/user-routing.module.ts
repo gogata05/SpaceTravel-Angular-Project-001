@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-// import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 // import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AuthGuard } from '../guards/auth-activate.guard';
 import { GuestGuard } from '../guards/guest-activate.guard';
@@ -18,11 +18,11 @@ const routes: Routes = [
         component: RegisterComponent,
         canActivate: [GuestGuard] 
     },
-    // {
-    //     path: 'profile',
-    //     component: ProfileComponent,
-    //     canActivate: [AuthGuard]
-    // },
+    {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
+    },
     // {
     //     path: 'profile/edit',
     //     component: EditProfileComponent,
