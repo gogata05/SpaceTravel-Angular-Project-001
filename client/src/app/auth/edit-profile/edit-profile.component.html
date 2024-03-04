@@ -15,9 +15,11 @@
 						placeholder="Image" accept="image/x-png,image/gif,image/jpeg">
                   </div>
 
+
+                <!-- USERNAME -->
                 <div class="login__field">
                     <i class="login__icon fas fa-user"></i>
-                    <input [ngClass]="inputUsername.errors?  'input-error' : '' " type="text"
+                    <input [ngClass]="inputUsername.errors && inputUsername.touched ?  'input-error' : '' " type="text"
                         class="login__input" name="username" placeholder="Username" ngModel #inputUsername="ngModel"
                         required minlength="3" [ngModel]="user?.username">
                 </div>
@@ -30,9 +32,11 @@
 						Username must be at least {{inputUsername.errors?.['minlength']['requiredLength']}} characters!
 					</p>
 				</ng-container>
+
+                <!-- EMAIL -->
                 <div class="login__field">
                     <i Class="login__icon fas fa-envelope"></i>
-                    <input [ngClass]="inputEmail.errors?  'input-error' : '' " type="email"
+                    <input [ngClass]="inputEmail.errors && inputEmail.touched ?  'input-error' : '' " type="email"
                         class="login__input" name="email" placeholder="Email" ngModel #inputEmail="ngModel" required
                         minlength="10" [ngModel]="user?.email" [email]="validateEmail">
                 </div>
@@ -53,8 +57,8 @@
                 <!-- PASSWORD -->
                 <div class="login__field">
 					<i
-						[ngClass]="inputPassword.errors ?  'login__icon fas fa-lock envelope error-icon' : 'login__icon fas fa-lock'"></i>
-					<input [ngClass]="inputPassword.errors ?  'input-error' : '' "
+						[ngClass]="inputPassword.errors && inputPassword.touched ?  'login__icon fas fa-lock envelope error-icon' : 'login__icon fas fa-lock'"></i>
+					<input [ngClass]="inputPassword.errors && inputPassword.touched ?  'input-error' : '' "
 						type="password" class="login__input" name="password" placeholder="Enter your password!" ngModel
 						#inputPassword="ngModel" required minlength="6">
 				</div>

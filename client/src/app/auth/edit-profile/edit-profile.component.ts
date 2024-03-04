@@ -28,6 +28,58 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   selectedFile: any
   fileName: string = '';
 
+
+  ngOnInit(): void {
+    const currentUser$ = this.authService.getUserInfo().subscribe({
+      next: (userInfo) => {
+        this.user = userInfo;
+        this.userId = this.user._id;
+        this.profilePic = this.imageService.getImageAsBase64(this.user.img.data.data);
+        console.log(this.user);
+      },
+      error: (error) => {
+        console.log(error.error.message);
+        this.errorMessageFromServer = error.error.message;
+      }
+    });
+    this.subscriptions.add(currentUser$);
+  }
+
+
+  loadFile(event: any): void {
+    if (event.target.files) {
+      const reader = new FileReader();
+      this.selectedFile = <File>event.target.files[0];
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event: any) => {
+        this.url = event.target?.result;
+      }
+    }
+  }
+
+  convertToImageFile(base64String: string, filename: string): File {
+    const byteCharacters = atob(base64String);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+      const slice = byteCharacters.slice(offset, offset + 512);
+      const byteNumbers = new Array(slice.length);
+
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    const blob = new Blob(byteArrays, { type: 'image/jpeg' });
+
+    const file = new File([blob], filename, { type: 'image/jpeg' });
+    return file;
+  }
+
+
   editUserHandler(editUserForm: NgForm): void {
 
     if (editUserForm.invalid) {
@@ -51,6 +103,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     formData.append('password', editUserForm.value.password);
 
     console.log(formData.get('img'));
+
+
+    // this.router.navigate(['/user/profile']);
 
     const editedUser$ = this.authService.updateUserData(formData as unknown as createUserData).subscribe({
       next: (updatedUser) => {
