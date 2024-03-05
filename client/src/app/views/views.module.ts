@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
 import { TripsRoutingModule } from './trips-routing.module';
-// import { SearchComponent } from './search/search.component';
+import { SearchComponent } from './search/search.component';
 import { MissingComponent } from './missing/missing.component';
 import { AboutComponent } from './about/about.component';
 
@@ -21,7 +21,7 @@ import { AboutComponent } from './about/about.component';
     CreateComponent,
     DetailsComponent,
     EditComponent,
-    // SearchComponent,
+    SearchComponent,
     MissingComponent,
     AboutComponent
   ],

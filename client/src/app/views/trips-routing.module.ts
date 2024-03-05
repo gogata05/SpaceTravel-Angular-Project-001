@@ -6,7 +6,7 @@ import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
 import { AuthGuard } from '../guards/auth-activate.guard';
 
-// import { AuthActivate } from '../../core/guards/auth.acivate';
+import { AuthActivate } from '../../core/guards/auth.acivate';
 
 const routes: Routes = [
     {
