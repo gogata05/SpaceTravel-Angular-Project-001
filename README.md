@@ -103,7 +103,7 @@ Likes on Post:
 
 Register page with Upload Image:
 
-![image](https://imgur.com/fQ1pfaZ.png) 
+![image](https://imgur.com/DOQyQTj.png) 
 
 
 Add Post page:
