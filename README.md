@@ -106,6 +106,11 @@ Register page with Upload Image:
 ![image](https://imgur.com/DOQyQTj.png) 
 
 
+Error 404:
+
+![image](https://imgur.com/0lCNyOn.png) 
+
+
 Add Post page:
 
 ![image](https://imgur.com/TotiwhK.png) 
@@ -134,8 +139,3 @@ Delete Post With Confirmation:
 Details:
 
 ![image](https://imgur.com/KHwsrr9.png) 
-
-
-Error 404:
-
-![image](https://imgur.com/0lCNyOn.png) 
