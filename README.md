@@ -134,3 +134,8 @@ Delete Post With Confirmation:
 Details:
 
 ![image](https://imgur.com/KHwsrr9.png) 
+
+
+Error 404:
+
+![image](https://imgur.com/hLLVY0O.png) 
