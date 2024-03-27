@@ -138,4 +138,4 @@ Details:
 
 Error 404:
 
-![image](https://imgur.com/hLLVY0O.png) 
+![image](https://imgur.com/0lCNyOn.png) 
