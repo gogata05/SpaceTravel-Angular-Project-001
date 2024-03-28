@@ -37,7 +37,7 @@ The main feature of the application is fully working CRUD operations with image 
 <br />
   
 - 2.Setup Client:
-- 2.1.Open "client" folder with Visual Studio Code(you need 2 diffrent visual studio code windows to be opened(server and client))
+- 2.1.Open "client" folder with Visual Studio Code(you need 2 diffrent visual studio code windows to be opened(server and client) or you need to open the main folder and open terminal and locate with cd folderPath)
 - 2.2.In Terminal type: npm i 
 (if there are old packages update them by updating package.json,removing package-lock,removing node_modules and npm i command again )
 - 2.3.If there are some errors somehow type in Terminal: ng build
