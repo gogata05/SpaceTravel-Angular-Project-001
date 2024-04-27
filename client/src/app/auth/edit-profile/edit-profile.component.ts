@@ -29,7 +29,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   fileName: string = '';
 
 
-  ngOnInit(): void {
+  ngOnInit(): void {//init components
     const currentUser$ = this.authService.getUserInfo().subscribe({
       next: (userInfo) => {
         this.user = userInfo;
@@ -46,7 +46,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
 
-  loadFile(event: any): void {
+  loadFile(event: any): void {//for image upload
     if (event.target.files) {
       const reader = new FileReader();
       this.selectedFile = <File>event.target.files[0];
@@ -57,7 +57,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  convertToImageFile(base64String: string, filename: string): File {
+  convertToImageFile(base64String: string, filename: string): File {//converting String to image file
     const byteCharacters = atob(base64String);
     const byteArrays = [];
 
@@ -80,7 +80,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
 
-  editUserHandler(editUserForm: NgForm): void {
+  editUserHandler(editUserForm: NgForm): void {//method for edit user info
 
     if (editUserForm.invalid) {
       return;
@@ -121,7 +121,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.subscriptions.add(editedUser$);
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy(): void {//for unsubscribed
     if (this.subscriptions) {
       this.subscriptions.unsubscribe();
       console.log('unsubscribed');

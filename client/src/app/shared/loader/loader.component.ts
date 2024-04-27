@@ -8,3 +8,4 @@ import { Component } from '@angular/core';
 export class LoaderComponent {
 
 }
+//loader is: loading refresh progress bar animation?

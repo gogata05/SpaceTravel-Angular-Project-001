@@ -1,6 +1,6 @@
 import { User } from './user';
 
-export interface Trip {
+export interface Trip {//F12
   startLocation: string;
   endLocation: string;
   startDate: string;

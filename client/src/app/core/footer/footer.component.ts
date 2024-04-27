@@ -10,5 +10,5 @@ import { interval, map } from 'rxjs';
 export class FooterComponent {
   constructor( private router: Router){}
 
-  time$ = interval(1000).pipe(map(() => new Date()));
+  time$ = interval(1000).pipe(map(() => new Date()));//Real time clock which map on 1000 milliseconds/1s
 }

@@ -1,4 +1,4 @@
-export interface User {
+export interface User {//F12
     _id: string;
     username: string;
     email: string;

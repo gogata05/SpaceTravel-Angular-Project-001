@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const trips$ = this.apiService.getRecentTrips().subscribe(
       {
         next: (trips) => {
-          this.recentTrips = trips;
+          this.recentTrips = trips;//recentTrips added
           console.log(this.recentTrips);
         },
         error: (error) => {

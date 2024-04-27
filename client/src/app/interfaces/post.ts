@@ -1,7 +1,7 @@
 import { Trip } from './trip';
 import { User } from './user';
 
-export interface Post {
+export interface Post {//F12
   likes: string[];
   _id: string;
   text: string;

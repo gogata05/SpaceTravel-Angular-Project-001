@@ -13,11 +13,11 @@ export class PaginationComponent {
   @Input() currentPage$: any;
   @Input() pages!: number;
   
-  nextPage() {
+  nextPage() {//left arrow
     this.currentPage$.next(this.currentPage$.value + 1);
   }
 
-  previousPage() {
+  previousPage() {//right arrow
     if (this.currentPage$.value > 1) {
       this.currentPage$.next(this.currentPage$.value - 1);
     }

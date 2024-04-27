@@ -19,7 +19,7 @@ export class CreateComponent implements OnDestroy {
   fileName: string = '';
   subscriptions: Subscription = new Subscription();
 
-  loadFile(event: any): void {
+  loadFile(event: any): void {//for image upload
 
     if (event.target.files) {
       const reader = new FileReader();
@@ -31,17 +31,17 @@ export class CreateComponent implements OnDestroy {
     }
   }
 
-  create(form: NgForm) {
+  create(form: NgForm) {//create form
     if (form.invalid) {
       return;
     }
 
     if (new Date(form.value.startDate) > new Date(form.value.endDate)) {
-      this.errorMessageFromServer = 'End date cannot be before start date';
+      this.errorMessageFromServer = 'End date cannot be before start date';//insure end date is after start date
       return;
     }
 
-    if (this.selectedFile) {
+    if (this.selectedFile) {//check if image is selected
       console.log(this.selectedFile);
       this.fileName = this.selectedFile.name;
     }

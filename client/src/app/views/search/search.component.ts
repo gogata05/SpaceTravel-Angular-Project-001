@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   
   subscriptions: Subscription = new Subscription();
 
-  ngOnInit() {
+  ngOnInit() {//init method for search
     const results$ = this.searchService.currentPage$.subscribe((currentPage) => {
       console.log(this.searchService.currentPage$);
        this.searchService.getSearch().subscribe({
@@ -30,6 +30,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.subscriptions.add(results$);
   }
 
+  //pagination
   nextPage() {
     this.searchService.currentPage$.next(this.searchService.currentPage$.value + 1);
   }
@@ -40,12 +41,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy(): void {//method for unsubscribed
     if (this.subscriptions) {
       this.subscriptions.unsubscribe();
       console.log('unsubscribed');
       
     }
   }
-
 }

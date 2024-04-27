@@ -5,8 +5,8 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { SessionService } from 'src/app/services/session.service';
 import { createUserData } from 'src/app/interfaces/createUserData';
-import { catchError } from 'rxjs/operators';//?
-import { throwError } from 'rxjs'; //?
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs'; 
 
 @Component({
   selector: 'app-register',
@@ -19,11 +19,11 @@ export class RegisterComponent implements OnDestroy {
   subscriptions: Subscription = new Subscription();
   errorMessageFromServer!: string;
   validateEmail:boolean = true;
-  url: string = '/assets/images/default_image.png';
+  url: string = '/assets/images/default_image.png';//upload image variable
   selectedFile: any
   fileName: string = '';
 
-  loadFile(event: any): void {
+  loadFile(event: any): void {//method for image upload
 
     if (event.target.files) {
       const reader = new FileReader();
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnDestroy {
   }
 
 
-  registerHandler(registerForm: NgForm): void {
+  registerHandler(registerForm: NgForm): void {//method for register
 
     if (registerForm.invalid) {
       return;
@@ -80,7 +80,7 @@ const createdUser$ = this.authService.register(formData as unknown as createUser
     this.subscriptions.add(createdUser$);
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy(): void {//for unsubscribed
     if (this.subscriptions) {
       this.subscriptions.unsubscribe();
       console.log('unsubscribed');

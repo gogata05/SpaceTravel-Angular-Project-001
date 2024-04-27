@@ -46,7 +46,7 @@ export class EditComponent implements OnInit, OnDestroy {
     this.subscriptions.add(currentTrip$);
   }
 
-  getImageAsBase64(): string {
+  getImageAsBase64(): string {//convert trip.img from Uint8Array to Base64 string
     let binary = '';
     const bytes = new Uint8Array(this.trip.img.data.data);
 
@@ -57,7 +57,7 @@ export class EditComponent implements OnInit, OnDestroy {
     return btoa(binary);
   }
 
-  loadFile(event: any): void {
+  loadFile(event: any): void {//for image upload
 
     if (event.target.files) {
       const reader = new FileReader();
@@ -69,7 +69,7 @@ export class EditComponent implements OnInit, OnDestroy {
     }
   }
 
-  convertToImageFile(base64String: string, filename: string): File {
+  convertToImageFile(base64String: string, filename: string): File {//converting String to image file
     const byteCharacters = atob(base64String);
     const byteArrays = [];
 

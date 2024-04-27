@@ -26,3 +26,4 @@ export class ModalComponent {
     this.close(); // Close the modal after confirming delete
   }
 }
+//A modal is: a popup window that requires user interaction like "Confirm Delete"

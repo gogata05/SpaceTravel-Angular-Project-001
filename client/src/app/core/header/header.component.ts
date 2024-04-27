@@ -30,11 +30,11 @@ export class HeaderComponent {
 
   isOpen: boolean = false;
 
-  onBtnClick(): void {
+  onBtnClick(): void {//for header user dropdown_menu
     this.isOpen = !this.isOpen;
   }
 
-  searchHandler(): void {
+  searchHandler(): void {//for taking the search input
     console.log(this.searchInput);
     const searchResults$ = this.apiService.getSearchResult(this.searchInput, 1).subscribe(
       {
@@ -66,7 +66,7 @@ export class HeaderComponent {
     this.subscriptions.add(searchResults$);
   }
 
-  logoutHandler(): void {
+  logoutHandler(): void {//method for logout
     const logout$ = this.authService.logout().subscribe({
       next: (data) => {
         this.sessionService.clearSession();
@@ -81,7 +81,7 @@ export class HeaderComponent {
     this.subscriptions.add(logout$);
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy(): void {//method for unsubscribed
     if (this.subscriptions) {
       this.subscriptions.unsubscribe();
       console.log('unsubscribed');

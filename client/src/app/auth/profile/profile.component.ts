@@ -61,6 +61,7 @@ export class ProfileComponent implements OnInit, OnDestroy{
   //   switchMap((currentPage) => this.apiService.getUserTrips(this.userId, currentPage))
   // );
 
+  //Pagination
   nextPage() {
     this.currentPage$.next(this.currentPage$.value + 1);
   }
@@ -70,6 +71,7 @@ export class ProfileComponent implements OnInit, OnDestroy{
       this.currentPage$.next(this.currentPage$.value - 1);
     }
   }
+
 
   ngOnDestroy(): void {
     if (this.subscriptions) {

@@ -7,7 +7,7 @@ export class ImageService {
 
   constructor() { }
 
-  getImageAsBase64(file: any): string {
+  getImageAsBase64(file: any): string {//
     let binary = '';
     const bytes = new Uint8Array(file);
 

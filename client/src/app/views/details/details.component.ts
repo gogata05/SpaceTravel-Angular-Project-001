@@ -33,10 +33,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
   isShown: boolean = false;
   isLoading: boolean = true;
   showComments: boolean = false;
-  name!: string;//?
+  name!: string;
   isLiked: boolean = false;
 
-  ngOnInit(): void {
+  ngOnInit(): void {//init method
     this.user = this.sessionService.getUserData();
 
     if (this.user) {
@@ -78,7 +78,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(currentLog$);
   }
 
-  getImageAsBase64(file: any): string {
+  getImageAsBase64(file: any): string {//convert from Uint8Array to Base64 string
     let binary = '';
     const bytes = new Uint8Array(file);
 
@@ -88,9 +88,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
     }
     return btoa(binary);
   }
-
+ 
+  //modals
   onCloseModal(isShown: boolean) {
-    this.isShown = isShown; // Update the isShown variable in the parent component
+    this.isShown = isShown; 
   }
 
   showDeleteModal() {
@@ -109,11 +110,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(deleteLog$);
   }
 
-  showCommentSection(): void {
+  showCommentSection(): void {//show comment section method
     this.showComments = !this.showComments;
   }
 
-  like(): void {
+  like(): void {//like method
     console.log('like');
     const likeLog$ = this.apiService.addLike(this.tripId).subscribe({
       next: () => {
@@ -121,7 +122,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
         this.apiService.getDetails(this.tripId).subscribe(
           {
             next: (result) => {
-              this.trip.likes = result.likes;//!
+              this.trip.likes = result.likes;
             },
             error: (error) => {
               console.log(error.error.message);
@@ -137,7 +138,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(likeLog$);
   }
 
-  addComment(commentForm: NgForm): void {
+  addComment(commentForm: NgForm): void {//add comment method
     if (commentForm.invalid) {
       return;
     }
@@ -169,13 +170,13 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(commentLog$);
   }
 
-  getCreatedAt(id: string): string {
+  getCreatedAt(id: string): string {//comment created date ago
     const timeStamp = id.toString().substring(0, 8);
     const date = new Date(parseInt(timeStamp, 16) * 1000);
     return moment(date).fromNow();
   }
 
-  downloadImage(): void {
+  downloadImage(): void {//download image method
     if (this.image) {
       const byteCharacters = atob(this.image);
       const byteNumbers = new Array(byteCharacters.length);
@@ -218,7 +219,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy(): void {//method for unsubscribed
     if (this.subscriptions) {
       this.subscriptions.unsubscribe();
       console.log('unsubscribed');      

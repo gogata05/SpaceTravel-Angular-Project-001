@@ -17,7 +17,7 @@ export class TripsComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   showPagination: boolean = false;
 
-  ngOnInit(): void {
+  ngOnInit(): void {//init method for trips
     const allTrips$ = this.apiService.getCount().subscribe(
       {
         next: (result) => {
@@ -52,6 +52,7 @@ export class TripsComponent implements OnInit, OnDestroy {
     }
     )
 
+  //pagination
   nextPage() {
     this.currentPage$.next(this.currentPage$.value + 1);
   }
@@ -62,16 +63,15 @@ export class TripsComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy(): void {//method for unsubscribed
     if (this.subscriptions) {
       this.subscriptions.unsubscribe();
       console.log('unsubscribed');
     }
   }
   trackByFn(index: number, item: Trip): number {
-    return Number(item._id); // for speed//delete later?
+    return Number(item._id); 
   }
-
 }
 
 
